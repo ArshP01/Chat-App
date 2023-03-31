@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		E92C170929D5B46C004B12C0 /* OnboardingButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C170829D5B46C004B12C0 /* OnboardingButtonStyle.swift */; };
 		E92C170B29D5CB94004B12C0 /* CreateProfileTextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C170A29D5CB94004B12C0 /* CreateProfileTextfieldStyle.swift */; };
+		E92C170D29D5D73F004B12C0 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C170C29D5D73F004B12C0 /* ContactsViewModel.swift */; };
+		E92C170F29D5E0C2004B12C0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C170E29D5E0C2004B12C0 /* User.swift */; };
+		E92C171129D5E294004B12C0 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C171029D5E294004B12C0 /* DatabaseService.swift */; };
+		E92C171329D5F68D004B12C0 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C171229D5F68D004B12C0 /* TextHelper.swift */; };
+		E92C171529D6068B004B12C0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C171429D6068B004B12C0 /* ImagePicker.swift */; };
 		E96076AA29D3EBB0006BBC8C /* Chat_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076A929D3EBB0006BBC8C /* Chat_AppApp.swift */; };
 		E96076AC29D3EBB0006BBC8C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076AB29D3EBB0006BBC8C /* RootView.swift */; };
 		E96076AE29D3EBB1006BBC8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E96076AD29D3EBB1006BBC8C /* Assets.xcassets */; };
@@ -37,6 +42,11 @@
 /* Begin PBXFileReference section */
 		E92C170829D5B46C004B12C0 /* OnboardingButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButtonStyle.swift; sourceTree = "<group>"; };
 		E92C170A29D5CB94004B12C0 /* CreateProfileTextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileTextfieldStyle.swift; sourceTree = "<group>"; };
+		E92C170C29D5D73F004B12C0 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
+		E92C170E29D5E0C2004B12C0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E92C171029D5E294004B12C0 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		E92C171229D5F68D004B12C0 /* TextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
+		E92C171429D6068B004B12C0 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		E96076A629D3EBB0006BBC8C /* Chat App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chat App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96076A929D3EBB0006BBC8C /* Chat_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat_AppApp.swift; sourceTree = "<group>"; };
 		E96076AB29D3EBB0006BBC8C /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -134,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				E96076D929D4A328006BBC8C /* AuthViewModel.swift */,
+				E92C170C29D5D73F004B12C0 /* ContactsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -141,6 +152,7 @@
 		E96076B929D3EC2D006BBC8C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E92C170E29D5E0C2004B12C0 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -148,6 +160,7 @@
 		E96076BA29D3EC39006BBC8C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E92C171029D5E294004B12C0 /* DatabaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -158,6 +171,7 @@
 				E96076C429D3F835006BBC8C /* Fonts.swift */,
 				E92C170829D5B46C004B12C0 /* OnboardingButtonStyle.swift */,
 				E92C170A29D5CB94004B12C0 /* CreateProfileTextfieldStyle.swift */,
+				E92C171229D5F68D004B12C0 /* TextHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -189,6 +203,7 @@
 				E96076E029D4BE9D006BBC8C /* PhoneNumberView.swift */,
 				E96076E229D4BED3006BBC8C /* VerificationView.swift */,
 				E96076E429D4BEE8006BBC8C /* CreateProfileView.swift */,
+				E92C171429D6068B004B12C0 /* ImagePicker.swift */,
 				E96076E629D4BF3A006BBC8C /* SyncContactsView.swift */,
 			);
 			path = Onboarding;
@@ -277,19 +292,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E92C171129D5E294004B12C0 /* DatabaseService.swift in Sources */,
 				E92C170B29D5CB94004B12C0 /* CreateProfileTextfieldStyle.swift in Sources */,
 				E96076E729D4BF3A006BBC8C /* SyncContactsView.swift in Sources */,
 				E96076D729D4992D006BBC8C /* AppDelegate.swift in Sources */,
+				E92C171329D5F68D004B12C0 /* TextHelper.swift in Sources */,
 				E96076DD29D4BB80006BBC8C /* OnboardingContainerView.swift in Sources */,
 				E96076C829D3FDAB006BBC8C /* CustomTabBar.swift in Sources */,
 				E92C170929D5B46C004B12C0 /* OnboardingButtonStyle.swift in Sources */,
 				E96076AC29D3EBB0006BBC8C /* RootView.swift in Sources */,
+				E92C170F29D5E0C2004B12C0 /* User.swift in Sources */,
 				E96076DF29D4BE8F006BBC8C /* WelcomeView.swift in Sources */,
 				E96076DA29D4A328006BBC8C /* AuthViewModel.swift in Sources */,
 				E96076E529D4BEE8006BBC8C /* CreateProfileView.swift in Sources */,
 				E96076E129D4BE9D006BBC8C /* PhoneNumberView.swift in Sources */,
 				E96076C529D3F835006BBC8C /* Fonts.swift in Sources */,
 				E96076E329D4BED3006BBC8C /* VerificationView.swift in Sources */,
+				E92C170D29D5D73F004B12C0 /* ContactsViewModel.swift in Sources */,
+				E92C171529D6068B004B12C0 /* ImagePicker.swift in Sources */,
 				E96076CA29D4921A006BBC8C /* TabBarButton.swift in Sources */,
 				E96076AA29D3EBB0006BBC8C /* Chat_AppApp.swift in Sources */,
 			);

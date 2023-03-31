@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import FirebaseCore
+import Firebase
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,4 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     return true
   }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+      print("\(#function)")
+        Auth.auth().setAPNSToken(deviceToken, type: AuthAPNSTokenType.unknown)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification notification: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+      print("\(#function)")
+      if Auth.auth().canHandleNotification(notification) {
+        completionHandler(.noData)
+        return
+      }
+    }
 }

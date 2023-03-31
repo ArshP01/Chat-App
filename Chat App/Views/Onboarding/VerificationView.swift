@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import Combine
 
 struct VerificationView: View {
     
     @Binding var currentStep: OnboardingStep
+    @Binding var isOnboarding: Bool
     
     @State var verificationcode = ""
     
@@ -36,6 +38,10 @@ struct VerificationView: View {
                 HStack{
                     TextField("", text: $verificationcode)
                         .font(Font.bodyParagraph)
+                        .keyboardType(.numberPad)
+                        .onReceive(Just(verificationcode)) { _ in
+                            TextHelper.limitText(&verificationcode, 6)
+                        }
                     
                     Spacer()
                     
@@ -56,8 +62,34 @@ struct VerificationView: View {
             Spacer()
             
             Button {
-                // Next Step
-                currentStep = .profile
+                // Send the verification code to Firebase
+                AuthViewModel.verifyCode(code: verificationcode) { error in
+                    
+                    // Check for errors
+                    if error == nil {
+                        
+                        // Check if this user has a profile
+                        DatabaseService().checkUserProfile { exists in
+                            
+                            if exists {
+                                // End the onboarding
+                                isOnboarding = false
+                            }
+                            else {
+                                // Move to the profile creation step
+                                currentStep = .profile
+                            }
+                        }
+                        
+                        
+                    }
+                    else {
+                        // TODO: show an error
+                    }
+                }
+                
+                
+                
                 
             } label: {
                 Text("Next")
@@ -74,6 +106,6 @@ struct VerificationView: View {
 
 struct VerificationView_Previews: PreviewProvider {
     static var previews: some View {
-        VerificationView(currentStep: .constant(.verification))
+        VerificationView(currentStep: .constant(.verification), isOnboarding: .constant(true))
     }
 }
