@@ -55,7 +55,13 @@ struct ContactRow: View {
                         case .failure:
                             // Couldn't fetch profile picture
                             // Display circle with first letter of first name
-                            
+                            ZStack {
+                                Circle()
+                                    .foregroundColor(.white)
+                                
+                                Text(user.firstname?.prefix(1) ?? "")
+                                    .bold()
+                            }
                             
                         }
                     }
