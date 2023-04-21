@@ -10,6 +10,9 @@ import SwiftUI
 struct ContactsListView: View {
     
     @EnvironmentObject var contactsViewModel: ContactsViewModel
+    @EnvironmentObject var chatViewModel: ChatViewModel
+    
+    @Binding var isChatShowing: Bool
     
     @State var filterText = ""
     
@@ -56,16 +59,28 @@ struct ContactsListView: View {
                 // List
                 List(contactsViewModel.filteredUsers) { user in
                     
-                    // Display rows
-                    ContactRow(user: user)
-                        .listRowBackground(Color.clear)
-                        .listRowSeparator(.hidden)
-                    
+                    Button {
+                        
+                        // Search for an existing convo with this user
+                        chatViewModel.getChatFor(contact: user)
+                        
+                        // Display conversation view
+                        isChatShowing = true
+                        
+                    } label: {
+                        
+                        // Display rows
+                        ContactRow(user: user)
+                            
+                    }
+                    .buttonStyle(.plain)
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+ 
                 }
                 .listStyle(.plain)
                 .padding(.top, 12)
-                
-                
+                  
             }
             else {
                 // No Contacts Page
@@ -101,6 +116,6 @@ struct ContactsListView: View {
 
 struct ContactsListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactsListView()
+        ContactsListView(isChatShowing: .constant(false))
     }
 }

@@ -16,6 +16,8 @@
 		E92C171129D5E294004B12C0 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C171029D5E294004B12C0 /* DatabaseService.swift */; };
 		E92C171329D5F68D004B12C0 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C171229D5F68D004B12C0 /* TextHelper.swift */; };
 		E92C171529D6068B004B12C0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C171429D6068B004B12C0 /* ImagePicker.swift */; };
+		E93440BD29E3366C00197D98 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93440BC29E3366C00197D98 /* Chat.swift */; };
+		E93440BF29E33A5000197D98 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93440BE29E33A5000197D98 /* ChatViewModel.swift */; };
 		E96076AA29D3EBB0006BBC8C /* Chat_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076A929D3EBB0006BBC8C /* Chat_AppApp.swift */; };
 		E96076AC29D3EBB0006BBC8C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076AB29D3EBB0006BBC8C /* RootView.swift */; };
 		E96076AE29D3EBB1006BBC8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E96076AD29D3EBB1006BBC8C /* Assets.xcassets */; };
@@ -39,7 +41,11 @@
 		E96076E329D4BED3006BBC8C /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076E229D4BED3006BBC8C /* VerificationView.swift */; };
 		E96076E529D4BEE8006BBC8C /* CreateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076E429D4BEE8006BBC8C /* CreateProfileView.swift */; };
 		E96076E729D4BF3A006BBC8C /* SyncContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076E629D4BF3A006BBC8C /* SyncContactsView.swift */; };
+		E9893F8529E3207300D0AB1F /* RoundedCornerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9893F8429E3207300D0AB1F /* RoundedCornerExtension.swift */; };
 		E989F89A29DC83B000E1DDEA /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989F89929DC83B000E1DDEA /* ContactRow.swift */; };
+		E9EA569E29E5D27200C72578 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EA569D29E5D27200C72578 /* DateHelper.swift */; };
+		E9EBBFF329DF4F35005487B5 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EBBFF229DF4F35005487B5 /* ConversationView.swift */; };
+		E9EBBFF629E13796005487B5 /* ProfilePicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EBBFF529E13796005487B5 /* ProfilePicView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +58,8 @@
 		E92C171029D5E294004B12C0 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		E92C171229D5F68D004B12C0 /* TextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
 		E92C171429D6068B004B12C0 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		E93440BC29E3366C00197D98 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		E93440BE29E33A5000197D98 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		E96076A629D3EBB0006BBC8C /* Chat App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chat App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96076A929D3EBB0006BBC8C /* Chat_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat_AppApp.swift; sourceTree = "<group>"; };
 		E96076AB29D3EBB0006BBC8C /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -74,7 +82,11 @@
 		E96076E229D4BED3006BBC8C /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
 		E96076E429D4BEE8006BBC8C /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
 		E96076E629D4BF3A006BBC8C /* SyncContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncContactsView.swift; sourceTree = "<group>"; };
+		E9893F8429E3207300D0AB1F /* RoundedCornerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerExtension.swift; sourceTree = "<group>"; };
 		E989F89929DC83B000E1DDEA /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
+		E9EA569D29E5D27200C72578 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		E9EBBFF229DF4F35005487B5 /* ConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
+		E9EBBFF529E13796005487B5 /* ProfilePicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				E92081F629D7216500B4B56F /* ChatsListView.swift */,
+				E9EBBFF229DF4F35005487B5 /* ConversationView.swift */,
 			);
 			path = "Chats View";
 			sourceTree = "<group>";
@@ -161,6 +174,7 @@
 				E92081F329D7212200B4B56F /* Chats View */,
 				E92081F229D7210600B4B56F /* Contacts View */,
 				E96076C629D3FD66006BBC8C /* Custom Tab Bar */,
+				E9EBBFF429E13705005487B5 /* Misc */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,6 +184,7 @@
 			children = (
 				E96076D929D4A328006BBC8C /* AuthViewModel.swift */,
 				E92C170C29D5D73F004B12C0 /* ContactsViewModel.swift */,
+				E93440BE29E33A5000197D98 /* ChatViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -178,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				E92C170E29D5E0C2004B12C0 /* User.swift */,
+				E93440BC29E3366C00197D98 /* Chat.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -197,6 +213,8 @@
 				E92C170829D5B46C004B12C0 /* OnboardingButtonStyle.swift */,
 				E92C170A29D5CB94004B12C0 /* CreateProfileTextfieldStyle.swift */,
 				E92C171229D5F68D004B12C0 /* TextHelper.swift */,
+				E9893F8429E3207300D0AB1F /* RoundedCornerExtension.swift */,
+				E9EA569D29E5D27200C72578 /* DateHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -232,6 +250,14 @@
 				E96076E629D4BF3A006BBC8C /* SyncContactsView.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		E9EBBFF429E13705005487B5 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				E9EBBFF529E13796005487B5 /* ProfilePicView.swift */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +346,7 @@
 				E92C171129D5E294004B12C0 /* DatabaseService.swift in Sources */,
 				E92C170B29D5CB94004B12C0 /* CreateProfileTextfieldStyle.swift in Sources */,
 				E96076E729D4BF3A006BBC8C /* SyncContactsView.swift in Sources */,
+				E9EA569E29E5D27200C72578 /* DateHelper.swift in Sources */,
 				E96076D729D4992D006BBC8C /* AppDelegate.swift in Sources */,
 				E92C171329D5F68D004B12C0 /* TextHelper.swift in Sources */,
 				E96076DD29D4BB80006BBC8C /* OnboardingContainerView.swift in Sources */,
@@ -339,7 +366,12 @@
 				E92C170D29D5D73F004B12C0 /* ContactsViewModel.swift in Sources */,
 				E92C171529D6068B004B12C0 /* ImagePicker.swift in Sources */,
 				E96076CA29D4921A006BBC8C /* TabBarButton.swift in Sources */,
+				E93440BF29E33A5000197D98 /* ChatViewModel.swift in Sources */,
+				E93440BD29E3366C00197D98 /* Chat.swift in Sources */,
+				E9893F8529E3207300D0AB1F /* RoundedCornerExtension.swift in Sources */,
 				E96076AA29D3EBB0006BBC8C /* Chat_AppApp.swift in Sources */,
+				E9EBBFF629E13796005487B5 /* ProfilePicView.swift in Sources */,
+				E9EBBFF329DF4F35005487B5 /* ConversationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Chat App/Chat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -478,6 +511,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -498,6 +532,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Chat App/Chat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -511,6 +546,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
