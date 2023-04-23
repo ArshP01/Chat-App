@@ -36,19 +36,21 @@ class AuthViewModel {
             if error == nil {
                 // Got the verification id
                 UserDefaults.standard.set(verificationId, forKey: "authVerificationID")
-            
+                
+                
             }
             
             DispatchQueue.main.async {
                 // Notify the UI
                 completion(error)
             }
+            
         }
     }
     
     static func verifyCode(code: String, completion: @escaping (Error?) -> Void) {
         
-        // Get the verification id from the local storage
+        // Get the verification id from local storage
         let verificationId = UserDefaults.standard.string(forKey: "authVerificationID") ?? ""
         
         // Send the code and the verification id to Firebase

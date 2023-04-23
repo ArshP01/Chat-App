@@ -13,12 +13,14 @@ struct ContactRow: View {
     
     var body: some View {
         
-        HStack(spacing: 24) {
+        
+        
+        HStack (spacing: 24) {
             
-            //Profile Image
+            // Profile Image
             ProfilePicView(user: user)
             
-            VStack (alignment: .leading, spacing: 4){
+            VStack (alignment: .leading, spacing: 4) {
                 // Name
                 Text("\(user.firstname ?? "") \(user.lastname ?? "")")
                     .font(Font.button)
@@ -29,10 +31,10 @@ struct ContactRow: View {
                     .font(Font.bodyParagraph)
                     .foregroundColor(Color("text-input"))
             }
+            
             // Extra space
             Spacer()
         }
-        
     }
 }
 

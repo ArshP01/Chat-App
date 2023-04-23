@@ -23,9 +23,11 @@ struct ContactsListView: View {
             HStack {
                 Text("Contacts")
                     .font(Font.pageTitle)
+                
                 Spacer()
+                
                 Button {
-                    // Settings
+                    // TODO: Settings
                 } label: {
                     Image(systemName: "gearshape.fill")
                         .resizable()
@@ -36,7 +38,7 @@ struct ContactsListView: View {
             }
             .padding(.top, 20)
             
-            // Search Bar
+            // Search bar
             ZStack {
                 Rectangle()
                     .foregroundColor(Color.white)
@@ -51,11 +53,12 @@ struct ContactsListView: View {
             .onChange(of: filterText) { _ in
                 // Filter the results
                 contactsViewModel.filterContacts(filterBy:
-                                                    filterText.lowercased().trimmingCharacters(in:.whitespacesAndNewlines))
+                                                    filterText.lowercased()
+                                                    .trimmingCharacters(in: .whitespacesAndNewlines))
             }
             
             if contactsViewModel.filteredUsers.count > 0 {
-                
+            
                 // List
                 List(contactsViewModel.filteredUsers) { user in
                     
@@ -71,46 +74,39 @@ struct ContactsListView: View {
                         
                         // Display rows
                         ContactRow(user: user)
-                            
                     }
                     .buttonStyle(.plain)
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
- 
+                    
                 }
                 .listStyle(.plain)
                 .padding(.top, 12)
-                  
             }
             else {
-                // No Contacts Page
-                VStack{
-                    Spacer()
-                    
-                    Image("no-contacts-yet")
-                    
-                    Text("Hmm... Zero contacts?")
-                        .font(Font.chatHeading)
-                        .padding(.top, 32)
-                    
-                    Text("Try saving some contacts on your phone!")
-                        .font(Font.bodyParagraph)
-                        .padding(.top, 7)
-                    
-                    Spacer()
-                    
-                }
+                
+                Spacer()
+                
+                Image("no-contacts-yet")
+                
+                Text("Hmm... Zero contacts?")
+                    .font(Font.titleText)
+                    .padding(.top, 32)
+                
+                Text("Try saving some contacts on your phone!")
+                    .font(Font.bodyParagraph)
+                    .padding(.top, 8)
+                
+                
+                Spacer()
                 
             }
             
         }
         .padding(.horizontal)
         .onAppear {
-            // Get local contacts
             contactsViewModel.getLocalContacts()
         }
-        
-        
     }
 }
 

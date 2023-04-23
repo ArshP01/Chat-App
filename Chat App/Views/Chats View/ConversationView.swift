@@ -98,13 +98,12 @@ struct ConversationView: View {
                                 
                                 Spacer()
                                 
-                                // Timestamp
                                 Text(DateHelper.chatTimestampFrom(date: msg.timestamp))
                                     .font(Font.smallText)
                                     .foregroundColor(Color("text-timestamp"))
                                     .padding(.leading)
-                                
                             }
+                            
                         }
                         
                     }
@@ -131,7 +130,6 @@ struct ConversationView: View {
                             .scaledToFit()
                             .frame(width: 24, height: 24)
                             .tint(Color("icons-secondary"))
-                            
                     }
 
                     // Textfield
@@ -193,7 +191,7 @@ struct ConversationView: View {
             .frame(height: 76)
         }
         .onAppear {
-            // Call chatviewmodel to retrieve all chat messages
+            // Call chat view model to retrieve all chat messages
             chatViewModel.getMessages()
             
             // Try to get the other participants as User instances

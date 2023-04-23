@@ -32,7 +32,6 @@ class ChatViewModel: ObservableObject {
             // Set the retrieved data to the chats property
             self.chats = chats
         }
-        
     }
     
     /// Search for chat with passed in user. If found, set as selected chat. If not found, create a new chat
@@ -87,7 +86,7 @@ class ChatViewModel: ObservableObject {
     func getMessages() {
         
         // Check that there's a selected chat
-        guard selectedChat !=  nil else {
+        guard selectedChat != nil else {
             return
         }
         
@@ -98,6 +97,7 @@ class ChatViewModel: ObservableObject {
         }
         
     }
+    
     func sendMessage(msg: String) {
         
         // Check that we have a selected chat
@@ -126,5 +126,6 @@ class ChatViewModel: ObservableObject {
         
         return ids
     }
+    
     
 }
