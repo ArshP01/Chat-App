@@ -15,17 +15,18 @@ struct TabBarButton: View {
     
     var body: some View {
         
-        GeometryReader{ geo in
+        GeometryReader { geo in
+            
             
             if isActive {
-                
-                Rectangle().foregroundColor(.blue)
+                Rectangle()
+                    .foregroundColor(.blue)
                     .frame(width: geo.size.width/2, height: 4)
                     .padding(.leading, geo.size.width/4)
-                
             }
             
-            VStack (alignment: .center, spacing: 4){
+            
+            VStack (alignment: .center, spacing: 4) {
                 
                 Image(systemName: imageName)
                     .resizable()
@@ -34,8 +35,6 @@ struct TabBarButton: View {
                 
                 Text(buttonText)
                     .font(Font.tabBar)
-                
-                
             }
             .frame(width: geo.size.width, height: geo.size.height)
             

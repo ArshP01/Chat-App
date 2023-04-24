@@ -13,65 +13,90 @@ struct ProfilePicView: View {
     
     var body: some View {
         
-        // Profile Image
         ZStack {
             
             // Check if user has a photo set
             if user.photo == nil {
                 
+                // Display circle with first letter of first name
                 ZStack {
                     Circle()
                         .foregroundColor(.white)
                     
                     Text(user.firstname?.prefix(1) ?? "")
                         .bold()
+                        .foregroundColor(Color("text-secondary"))
                 }
                 
             }
             else {
                 
-                // Create URL form user photo url
-                let photoUrl = URL(string: user.photo ?? "")
-                
-                // Profile image
-                AsyncImage(url: photoUrl) { phase in
+                // Check image cache, if it exists, use that
+                if let cachedImage = CacheService.getImage(forKey: user.photo!) {
                     
-                    switch phase {
+                    // Image is in cache so lets use it
+                    cachedImage
+                        .resizable()
+                        .clipShape(Circle())
+                        .scaledToFill()
+                        .clipped()
+                }
+                else {
+                    
+                    // If not in cache, download it
+                    
+                    // Create URL from user photo url
+                    let photoUrl = URL(string: user.photo ?? "")
+                    
+                    // Profile image
+                    AsyncImage(url: photoUrl) { phase in
                         
-                    case .empty:
-                        // Currently fetching
-                        ProgressView()
-                        
-                    case .success(let image):
-                        // Display the fetched image
-                        image
-                            .resizable()
-                            .clipShape(Circle())
-                            .scaledToFill()
-                            .clipped()
-                        
-                    case .failure:
-                        // Couldn't fetch profile picture
-                        // Display circle with first letter of first name
-                        ZStack {
-                            Circle()
-                                .foregroundColor(.white)
+                        switch phase {
                             
-                            Text(user.firstname?.prefix(1) ?? "")
-                                .bold()
+                        case .empty:
+                            // Currently fetching
+                            ProgressView()
+                            
+                        case .success(let image):
+                            // Display the fetched image
+                            image
+                                .resizable()
+                                .clipShape(Circle())
+                                .scaledToFill()
+                                .clipped()
+                                .onAppear {
+                                    // Save this image into cache
+                                    CacheService.setImage(image: image,
+                                                          forKey: user.photo!)
+                                }
+                            
+                        case .failure:
+                            // Couldn't fetch profile photo
+                            // Display circle with first letter of first name
+                            
+                            ZStack {
+                                Circle()
+                                    .foregroundColor(.white)
+                                
+                                Text(user.firstname?.prefix(1) ?? "")
+                                    .bold()
+                                    .foregroundColor(Color("text-secondary"))
+                            }
                         }
                         
                     }
                 }
+                
+                
+                
             }
-            
-            
             
             // Blue border
             Circle()
                 .stroke(Color("create-profile-border"), lineWidth: 2)
         }
         .frame(width: 44, height: 44)
+        
     }
 }
 

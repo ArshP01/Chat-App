@@ -10,14 +10,19 @@ import Combine
 
 struct VerificationView: View {
     
+    @EnvironmentObject var contactsViewModel: ContactsViewModel
+    @EnvironmentObject var chatViewModel: ChatViewModel
+    
     @Binding var currentStep: OnboardingStep
     @Binding var isOnboarding: Bool
     
     @State var verificationcode = ""
     
+    @State var isButtonDisabled = false
+    
     var body: some View {
         
-        VStack{
+        VStack {
             
             Text("Verification")
                 .font(Font.titleText)
@@ -26,16 +31,15 @@ struct VerificationView: View {
             Text("Enter the 6-digit verification code we sent to your device.")
                 .font(Font.bodyParagraph)
                 .padding(.top, 12)
-                
             
             // Textfield
-            ZStack{
+            ZStack {
                 
                 Rectangle()
                     .frame(height: 56)
                     .foregroundColor(Color("input"))
                 
-                HStack{
+                HStack {
                     TextField("", text: $verificationcode)
                         .font(Font.bodyParagraph)
                         .keyboardType(.numberPad)
@@ -46,22 +50,29 @@ struct VerificationView: View {
                     Spacer()
                     
                     Button {
-                        // clear text field
+                        // Clear text field
                         verificationcode = ""
                     } label: {
                         Image(systemName: "multiply.circle.fill")
                     }
                     .frame(width: 19, height: 19)
                     .tint(Color("icons-input"))
-  
+                    
+                        
+                        
                 }
                 .padding()
+                
             }
             .padding(.top, 34)
             
             Spacer()
             
             Button {
+                
+                // Disable the button
+                isButtonDisabled = true
+                
                 // Send the verification code to Firebase
                 AuthViewModel.verifyCode(code: verificationcode) { error in
                     
@@ -74,28 +85,42 @@ struct VerificationView: View {
                             if exists {
                                 // End the onboarding
                                 isOnboarding = false
+                                
+                                // Load contacts
+                                contactsViewModel.getLocalContacts()
+                                
+                                // Load chats
+                                chatViewModel.getChats()
                             }
                             else {
                                 // Move to the profile creation step
                                 currentStep = .profile
                             }
                         }
-                        
-                        
                     }
                     else {
-                        // TODO: show an error
+                        // TODO: Show error message
                     }
+                    
+                    // Reenable the button
+                    isButtonDisabled = false
                 }
                 
                 
                 
-                
             } label: {
-                Text("Next")
+                HStack {
+                    Text("Next")
+                    
+                    if isButtonDisabled {
+                        ProgressView()
+                            .padding(.leading, 2)
+                    }
+                }
             }
             .buttonStyle(OnboardingButtonStyle())
             .padding(.bottom, 87)
+            .disabled(isButtonDisabled)
 
             
         }

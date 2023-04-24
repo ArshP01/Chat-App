@@ -13,7 +13,7 @@ struct WelcomeView: View {
     
     var body: some View {
         
-        VStack{
+        VStack {
             Spacer()
             
             Image("onboarding-welcome")
@@ -26,28 +26,30 @@ struct WelcomeView: View {
                 .font(Font.bodyParagraph)
                 .padding(.top, 8)
             
+            
             Spacer()
             
             Button {
-                // Next Step
+                // Next step
                 currentStep = .phonenumber
                 
             } label: {
+                
                 Text("Get Started")
+                
             }
             .buttonStyle(OnboardingButtonStyle())
             
-        
-        
-        Text("By tapping ‘Get Started’, you agree to our Privacy Policy.")
-            .font(Font.smallText)
-            .padding(.top, 14)
-            .padding(.bottom, 61)
+            Text("By tapping ‘Get Started’, you agree to our Privacy Policy.")
+                .font(Font.smallText)
+                .padding(.top, 14)
+                .padding(.bottom, 61)
+
+            
+        }
+        .padding(.horizontal)
         
     }
-        .padding(.horizontal)
-    
-}
 }
 
 struct WelcomeView_Previews: PreviewProvider {

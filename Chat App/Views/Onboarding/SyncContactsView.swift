@@ -9,11 +9,14 @@ import SwiftUI
 
 struct SyncContactsView: View {
     
+    @EnvironmentObject var contactsViewModel: ContactsViewModel
+    
     @Binding var isOnboarding: Bool
+    
     
     var body: some View {
         
-        VStack{
+        VStack {
             Spacer()
             
             Image("onboarding-all-set")
@@ -26,20 +29,27 @@ struct SyncContactsView: View {
                 .font(Font.bodyParagraph)
                 .padding(.top, 8)
             
+            
             Spacer()
             
             Button {
-                // End Onboarding
+                // End onboarding
                 isOnboarding = false
                 
             } label: {
+                
                 Text("Continue")
+                
             }
             .buttonStyle(OnboardingButtonStyle())
             .padding(.bottom, 87)
-        
-    }
+
+            
+        }
         .padding(.horizontal)
+        .onAppear {
+            contactsViewModel.getLocalContacts()
+        }
 
     }
 }

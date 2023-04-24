@@ -14,9 +14,11 @@ struct PhoneNumberView: View {
     
     @State var phoneNumber = ""
     
+    @State var isButtonDisabled = false
+    
     var body: some View {
         
-        VStack{
+        VStack {
             
             Text("Verification")
                 .font(Font.titleText)
@@ -25,10 +27,9 @@ struct PhoneNumberView: View {
             Text("Enter your mobile number below. We’ll send you a verification code after.")
                 .font(Font.bodyParagraph)
                 .padding(.top, 12)
-                
             
             // Textfield
-            ZStack{
+            ZStack {
                 
                 Rectangle()
                     .frame(height: 56)
@@ -45,49 +46,70 @@ struct PhoneNumberView: View {
                     Spacer()
                     
                     Button {
-                        // clear text field
+                        // Clear text field
                         phoneNumber = ""
                     } label: {
                         Image(systemName: "multiply.circle.fill")
                     }
                     .frame(width: 19, height: 19)
                     .tint(Color("icons-input"))
-  
+                    
+                        
+                        
                 }
                 .padding()
+                
             }
             .padding(.top, 34)
             
             Spacer()
             
             Button {
+                
+                // Disable the button from multiple taps
+                isButtonDisabled = true
+                
                 // Send their phone number to Firebase Auth
                 
                 AuthViewModel.sendPhoneNumber(phone: phoneNumber) { error in
-
+                    
                     // Check for errors
                     if error == nil {
-
+                        
                         // Move to the next step
                         currentStep = .verification
                     }
                     else {
                         // TODO: show an error
                     }
+                    
+                    // Reenable button
+                    isButtonDisabled = false
                 }
                 
                 
+                
             } label: {
-                Text("Next")
+                
+                HStack {
+                    Text("Next")
+                    
+                    if isButtonDisabled {
+                        ProgressView()
+                            .padding(.leading, 2)
+                    }
+                }
             }
             .buttonStyle(OnboardingButtonStyle())
             .padding(.bottom, 87)
+            .disabled(isButtonDisabled)
 
             
         }
         .padding(.horizontal)
         
     }
+        
 }
 
 struct PhoneNumberView_Previews: PreviewProvider {

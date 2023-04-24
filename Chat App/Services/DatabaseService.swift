@@ -8,18 +8,20 @@
 import Foundation
 import Contacts
 import Firebase
-import FirebaseStorage
-
 import UIKit
+import FirebaseStorage
 
 class DatabaseService {
     
-    func getPlatformUsers(localContacts: [CNContact], completion: @escaping([User]) -> Void) {
+    var chatListViewListeners = [ListenerRegistration]()
+    var conversationViewListeners = [ListenerRegistration]()
+    
+    func getPlatformUsers(localContacts: [CNContact], completion: @escaping ([User]) -> Void) {
         
         // The array where we're storing fetched platform users
         var platformUsers = [User]()
         
-        // Construct an array of string phone number to look up
+        // Construct an array of string phone numbers to look up
         var lookupPhoneNumbers = localContacts.map { contact in
             
             // Turn the contact into a phone number as a string
@@ -28,6 +30,7 @@ class DatabaseService {
         
         // Make sure that there are lookup numbers
         guard lookupPhoneNumbers.count > 0 else {
+            
             // Callback
             completion(platformUsers)
             return
@@ -38,7 +41,7 @@ class DatabaseService {
         
         // Perform queries while we still have phone numbers to look up
         while !lookupPhoneNumbers.isEmpty {
-            
+        
             // Get the first < 10 phone numbers to look up
             let tenPhoneNumbers = Array(lookupPhoneNumbers.prefix(10))
             
@@ -47,8 +50,8 @@ class DatabaseService {
             
             // Look up the first 10
             let query = db.collection("users").whereField("phone", in: tenPhoneNumbers)
-            
-            // Retrive the users that are on the platform
+        
+            // Retrieve the users that are on the platform
             query.getDocuments { snapshot, error in
                 
                 // Check for errors
@@ -67,7 +70,6 @@ class DatabaseService {
                     // Check if we have anymore phone numbers to look up
                     // If not, we can call the completion block and we're done
                     if lookupPhoneNumbers.isEmpty {
-                        
                         // Return these users
                         completion(platformUsers)
                     }
@@ -76,9 +78,10 @@ class DatabaseService {
         }
         
         
+        
     }
     
-    func setUserProfile(firstName: String, lastName: String, image: UIImage?, completion: @escaping(Bool) -> Void) {
+    func setUserProfile(firstName: String, lastName: String, image: UIImage?, completion: @escaping (Bool) -> Void) {
         
         // Ensure that the user is logged in
         guard AuthViewModel.isUserLoggedIn() != false else {
@@ -86,14 +89,13 @@ class DatabaseService {
             return
         }
         
-        //Get user's phone number
+        // Get user's phone number
         let userPhone = TextHelper.sanitizePhoneNumber(AuthViewModel.getLoggedInUserPhone())
         
         // Get a reference to Firestore
         let db = Firestore.firestore()
         
         // Set the profile data
-        
         let doc = db.collection("users").document(AuthViewModel.getLoggedInUserId())
         doc.setData(["firstname": firstName,
                      "lastname": lastName,
@@ -101,8 +103,7 @@ class DatabaseService {
         
         // Check if an image is passed through
         if let image = image {
-            
-            
+        
             // Create storage reference
             let storageRef = Storage.storage().reference()
             
@@ -118,7 +119,7 @@ class DatabaseService {
             let path = "images/\(UUID().uuidString).jpg"
             let fileRef = storageRef.child(path)
             
-            let uploadTask = fileRef.putData(imageData!,metadata: nil) { meta, error in
+            let uploadTask = fileRef.putData(imageData!, metadata: nil) { meta, error in
                 
                 if error == nil && meta != nil
                 {
@@ -130,6 +131,7 @@ class DatabaseService {
                             
                             // Set that image path to the profile
                             doc.setData(["photo": url!.absoluteString], merge: true) { error in
+                                
                                 if error == nil {
                                     // Success, notify caller
                                     completion(true)
@@ -158,6 +160,7 @@ class DatabaseService {
             // No image was set
             completion(true)
         }
+        
     }
     
     func checkUserProfile(completion: @escaping (Bool) -> Void) {
@@ -167,26 +170,26 @@ class DatabaseService {
             return
         }
         
-        // Create Firebase Ref.
+        // Create firebase ref
         let db = Firestore.firestore()
         
         db.collection("users").document(AuthViewModel.getLoggedInUserId()).getDocument { snapshot, error in
             
-            // TODO: Keep the user profile data
-            
+            // TODO: Keep the users profile data
             if snapshot != nil && error == nil {
                 
-                // Notift that profile exists
+                // Notify that profile exists
                 completion(snapshot!.exists)
             }
             else {
                 // TODO: Look into using Result type to indicate failure vs profile exists
                 completion(false)
             }
+            
         }
         
     }
-    
+ 
     // MARK: - Chat Methods
     
     /// This method returns all chat documents where the logged in user is a participant
@@ -200,7 +203,7 @@ class DatabaseService {
             .whereField("participantids",
                         arrayContains: AuthViewModel.getLoggedInUserId())
         
-        chatsQuery.getDocuments { snapshot, error in
+        let listener = chatsQuery.addSnapshotListener { snapshot, error in
             
             if snapshot != nil && error == nil {
                 
@@ -225,6 +228,9 @@ class DatabaseService {
                 print("Error in database retrieval")
             }
         }
+        
+        // Keep track of the listener so that we can close it later
+        chatListViewListeners.append(listener)
     }
     
     /// This method returns all messages for a given chat
@@ -247,7 +253,7 @@ class DatabaseService {
             .order(by: "timestamp")
         
         // Perform the query
-        msgsQuery.getDocuments { snapshot, error in
+        let listener = msgsQuery.addSnapshotListener { snapshot, error in
             
             if snapshot != nil && error == nil {
                 
@@ -272,14 +278,12 @@ class DatabaseService {
             
         }
         
-    
-        
-        
-        
+        // Keep track of listener so that we can close it later
+        conversationViewListeners.append(listener)
         
     }
     
-    /// Send a message to the database
+    /// Send a text message to the database
     func sendMessage(msg: String, chat: Chat) {
         
         // Check that it's a valid chat
@@ -299,7 +303,74 @@ class DatabaseService {
                                 "senderid": AuthViewModel.getLoggedInUserId(),
                                 "timestamp": Date()])
         
+        // Update chat document to reflect msg that was just sent
+        db.collection("chats")
+            .document(chat.id!)
+            .setData(["updated": Date(),
+                      "lastmsg": msg],
+                     merge: true)
     }
+    
+    /// Send a photo message to the database
+    func sendPhotoMessage(image: UIImage, chat: Chat) {
+        
+        // Check that it's a valid chat
+        guard chat.id != nil else {
+            return
+        }
+        
+        // Create storage reference
+        let storageRef = Storage.storage().reference()
+        
+        // Turn our image into data
+        let imageData = image.jpegData(compressionQuality: 0.8)
+        
+        // Check that we were able to convert it to data
+        guard imageData != nil else {
+            return
+        }
+        
+        // Specify the file path and name
+        let path = "images/\(UUID().uuidString).jpg"
+        let fileRef = storageRef.child(path)
+        
+        // Upload the image
+        fileRef.putData(imageData!, metadata: nil) { metadata, error in
+            
+            // Check for errors
+            if error == nil && metadata != nil {
+                
+                // Get the url for the image in storage
+                fileRef.downloadURL { url, error in
+                    
+                    // Check for errors
+                    if url != nil && error == nil {
+                        
+                        // Store a chat message
+                        let db = Firestore.firestore()
+                        
+                        // Add msg document
+                        db.collection("chats")
+                            .document(chat.id!)
+                            .collection("msgs")
+                            .addDocument(data: ["imageurl": url!.absoluteString,
+                                                "msg": "",
+                                                "senderid": AuthViewModel.getLoggedInUserId(),
+                                                "timestamp": Date()])
+                        
+                        // Update chat document to reflect msg that was just sent
+                        db.collection("chats")
+                            .document(chat.id!)
+                            .setData(["updated": Date(),
+                                      "lastmsg": "image"],
+                                     merge: true)
+                    }
+                }
+            }
+        }
+    }
+    
+    
     
     func createChat(chat: Chat, completion: @escaping (String) -> Void) {
         
@@ -315,5 +386,42 @@ class DatabaseService {
             // Communicate the document id
             completion(doc.documentID)
         })
+    }
+    
+    func detachChatListViewListeners() {
+        for listener in chatListViewListeners {
+            listener.remove()
+        }
+    }
+    
+    func detachConversationViewListeners() {
+        for listener in conversationViewListeners {
+            listener.remove()
+        }
+    }
+    
+    // MARK: -- Account methods
+    
+    func deactivateAccount(completion: @escaping () -> Void) {
+        
+        // Make sure that user is logged in
+        guard AuthViewModel.isUserLoggedIn() else {
+            return
+        }
+        
+        // Get a reference to the database
+        let db = Firestore.firestore()
+        
+        // Run the command
+        db.collection("users")
+            .document(AuthViewModel.getLoggedInUserId())
+            .setData(["isactive":false, "firstname":"Deleted", "lastname":"User"], merge: true)
+        { error in
+            
+            // Check for errors
+            if error == nil {
+                completion()
+            }
+        }
     }
 }

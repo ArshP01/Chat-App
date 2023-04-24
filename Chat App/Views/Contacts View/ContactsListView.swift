@@ -13,6 +13,7 @@ struct ContactsListView: View {
     @EnvironmentObject var chatViewModel: ChatViewModel
     
     @Binding var isChatShowing: Bool
+    @Binding var isSettingsShowing: Bool
     
     @State var filterText = ""
     
@@ -27,7 +28,8 @@ struct ContactsListView: View {
                 Spacer()
                 
                 Button {
-                    // TODO: Settings
+                    // Show settings
+                    isSettingsShowing = true
                 } label: {
                     Image(systemName: "gearshape.fill")
                         .resizable()
@@ -62,22 +64,25 @@ struct ContactsListView: View {
                 // List
                 List(contactsViewModel.filteredUsers) { user in
                     
-                    Button {
-                        
-                        // Search for an existing convo with this user
-                        chatViewModel.getChatFor(contact: user)
-                        
-                        // Display conversation view
-                        isChatShowing = true
-                        
-                    } label: {
-                        
-                        // Display rows
-                        ContactRow(user: user)
+                    // Only show contact if it's active
+                    if user.isactive {
+                        Button {
+                            
+                            // Search for an existing convo with this user
+                            chatViewModel.getChatFor(contacts: [user])
+                            
+                            // Display conversation view
+                            isChatShowing = true
+                            
+                        } label: {
+                            
+                            // Display rows
+                            ContactRow(user: user)
+                        }
+                        .buttonStyle(.plain)
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
                     }
-                    .buttonStyle(.plain)
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
                     
                 }
                 .listStyle(.plain)
@@ -104,14 +109,13 @@ struct ContactsListView: View {
             
         }
         .padding(.horizontal)
-        .onAppear {
-            contactsViewModel.getLocalContacts()
-        }
+        
     }
 }
 
 struct ContactsListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactsListView(isChatShowing: .constant(false))
+        ContactsListView(isChatShowing: .constant(false),
+                         isSettingsShowing: .constant(false))
     }
 }

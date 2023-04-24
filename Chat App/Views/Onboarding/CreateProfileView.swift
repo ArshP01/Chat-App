@@ -24,7 +24,7 @@ struct CreateProfileView: View {
     
     var body: some View {
         
-        VStack{
+        VStack {
             
             Text("Setup your Profile")
                 .font(Font.titleText)
@@ -35,16 +35,16 @@ struct CreateProfileView: View {
                 .padding(.top, 12)
             
             Spacer()
-                
+            
             // Profile image button
             Button {
-                // show action sheet
-                isSourceMenuShowing = true
                 
+                // Show action sheet
+                isSourceMenuShowing = true
                 
             } label: {
                 
-                ZStack{
+                ZStack {
                     
                     if selectedImage != nil {
                         Image(uiImage: selectedImage!)
@@ -57,23 +57,23 @@ struct CreateProfileView: View {
                             .foregroundColor(Color.white)
                         
                         Image(systemName: "camera.fill")
-                            .tint(Color("icons-secondary"))
+                            .tint(Color("icons-input"))
                     }
                     
                     Circle()
                         .stroke(Color("create-profile-border"), lineWidth: 2)
+                    
                 }
                 .frame(width: 134, height: 134)
                 
             }
-            
-            Spacer()
 
+            Spacer()
             
             // First name
             TextField("Given Name", text: $firstName)
                 .textFieldStyle(CreateProfileTextfieldStyle())
-            
+                  
             // Last name
             TextField("Last Name", text: $lastName)
                 .textFieldStyle(CreateProfileTextfieldStyle())
@@ -93,15 +93,13 @@ struct CreateProfileView: View {
                                                  image: selectedImage) { isSuccess in
                     if isSuccess {
                         currentStep = .contacts
-                        
                     }
                     else {
                         // TODO: Show error message to the user
-                        
                     }
+                    
                     isSaveButtonDisabled = false
                 }
-                
                 
             } label: {
                 Text(isSaveButtonDisabled ? "Uploading" : "Save")
@@ -125,20 +123,20 @@ struct CreateProfileView: View {
             } label: {
                 Text("Photo Library")
             }
-            
+
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                
+            
                 Button {
                     // Set the source to camera
                     self.source = .camera
                     
                     // Show the image picker
                     isPickerShowing = true
-                    
                 } label: {
                     Text("Take Photo")
                 }
             }
+
             
         })
         .sheet(isPresented: $isPickerShowing) {

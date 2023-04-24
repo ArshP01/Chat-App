@@ -24,7 +24,7 @@ struct OnboardingContainerView: View {
     
     var body: some View {
         
-        ZStack{
+        ZStack {
             
             Color("background")
                 .ignoresSafeArea(edges: [.top, .bottom])
@@ -45,7 +45,6 @@ struct OnboardingContainerView: View {
                 
             case .contacts:
                 SyncContactsView(isOnboarding: $isOnboarding)
-                
             }
             
         }

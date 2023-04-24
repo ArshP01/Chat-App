@@ -12,17 +12,18 @@ struct CreateProfileTextfieldStyle: TextFieldStyle {
     
     func _body(configuration: TextField<Self._Label>) -> some View {
         
-        ZStack{
+        ZStack {
             Rectangle()
                 .foregroundColor(Color("input"))
                 .cornerRadius(8)
                 .frame(height: 46)
             
-            // This is referencing to the textfield
+            // This references the textfield
             configuration
                 .font(Font.tabBar)
                 .padding()
         }
+        
         
     }
     

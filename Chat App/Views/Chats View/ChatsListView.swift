@@ -13,6 +13,7 @@ struct ChatsListView: View {
     @EnvironmentObject var contactsViewModel: ContactsViewModel
     
     @Binding var isChatShowing: Bool
+    @Binding var isSettingsShowing: Bool
     
     var body: some View {
         
@@ -26,7 +27,8 @@ struct ChatsListView: View {
                 Spacer()
                 
                 Button {
-                    // TODO: Settings
+                    // Shows settings
+                    isSettingsShowing = true
                 } label: {
                     Image(systemName: "gearshape.fill")
                         .resizable()
@@ -44,23 +46,34 @@ struct ChatsListView: View {
                 
                 List(chatViewModel.chats) { chat in
                     
-                    Button {
+                    let otherParticipants = contactsViewModel.getParticipants(ids: chat.participantids)
+                    
+                    // Detect if it's a chat with a deleted user
+                    if let otherParticipant = otherParticipants.first,
+                        chat.numparticipants == 2,
+                        !otherParticipant.isactive {
                         
-                        // Set selcted chat for the chatviewmodel
-                        chatViewModel.selectedChat = chat
-                        
-                        // display conversation view
-                        isChatShowing = true
-                        
-                    } label: {
-                        
-                        ChatsListRow(chat: chat,
-                                     otherParticipants: contactsViewModel.getParticipants(ids: chat.participantids))
+                        // This is a conversation with a deleted user, don't show anything
                     }
-                    .buttonStyle(.plain)
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
-
+                    else {
+                        
+                        Button {
+                            
+                            // Set selcted chat for the chatviewmodel
+                            chatViewModel.selectedChat = chat
+                            
+                            // display conversation view
+                            isChatShowing = true
+                            
+                        } label: {
+                            
+                            ChatsListRow(chat: chat,
+                                         otherParticipants: otherParticipants)
+                        }
+                        .buttonStyle(.plain)
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                    }
                 }
                 .listStyle(.plain)
                 
@@ -93,6 +106,7 @@ struct ChatsListView: View {
 
 struct ChatsListView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatsListView(isChatShowing: .constant(false))
+        ChatsListView(isChatShowing: .constant(false),
+                      isSettingsShowing: .constant(false))
     }
 }
