@@ -56,6 +56,7 @@
 		E971B74C29F566C90095FB39 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = E971B74B29F566C90095FB39 /* FirebaseInAppMessaging-Beta */; };
 		E971B74E29F566C90095FB39 /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = E971B74D29F566C90095FB39 /* FirebaseInAppMessagingSwift-Beta */; };
 		E971B75029F566C90095FB39 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E971B74F29F566C90095FB39 /* FirebaseStorageCombine-Community */; };
+		E97E94E529FC3EEF00170593 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E97E94E429FC3EEF00170593 /* LaunchScreen.storyboard */; };
 		E9893F8529E3207300D0AB1F /* RoundedCornerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9893F8429E3207300D0AB1F /* RoundedCornerExtension.swift */; };
 		E989F89A29DC83B000E1DDEA /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989F89929DC83B000E1DDEA /* ContactRow.swift */; };
 		E9EA569E29E5D27200C72578 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EA569D29E5D27200C72578 /* DateHelper.swift */; };
@@ -106,6 +107,7 @@
 		E971B73C29F564A10095FB39 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E971B73E29F565180095FB39 /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
 		E971B74029F565960095FB39 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E97E94E429FC3EEF00170593 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9893F8429E3207300D0AB1F /* RoundedCornerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerExtension.swift; sourceTree = "<group>"; };
 		E989F89929DC83B000E1DDEA /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
 		E9EA569D29E5D27200C72578 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		E960769D29D3EBB0006BBC8C = {
 			isa = PBXGroup;
 			children = (
+				E97E94E429FC3EEF00170593 /* LaunchScreen.storyboard */,
 				E96076A829D3EBB0006BBC8C /* Chat App */,
 				E96076A729D3EBB0006BBC8C /* Products */,
 				E971B74229F5667E0095FB39 /* Frameworks */,
@@ -392,6 +395,7 @@
 				E96076C229D3F4F3006BBC8C /* LexendDeca-Bold.ttf in Resources */,
 				E96076AE29D3EBB1006BBC8C /* Assets.xcassets in Resources */,
 				E96076C129D3F4F3006BBC8C /* LexendDeca-Regular.ttf in Resources */,
+				E97E94E529FC3EEF00170593 /* LaunchScreen.storyboard in Resources */,
 				E96076C029D3F4F3006BBC8C /* LexendDeca-SemiBold.ttf in Resources */,
 				E96076CC29D49680006BBC8C /* GoogleService-Info.plist in Resources */,
 			);
@@ -580,7 +584,7 @@
 				INFOPLIST_KEY_NSContactsUsageDescription = "Sync your contacts to chat with them";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -615,7 +619,7 @@
 				INFOPLIST_KEY_NSContactsUsageDescription = "Sync your contacts to chat with them";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

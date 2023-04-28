@@ -83,6 +83,7 @@ class DatabaseService {
     
     func setUserProfile(firstName: String, lastName: String, image: UIImage?, completion: @escaping (Bool) -> Void) {
         
+        let isActive = true
         // Ensure that the user is logged in
         guard AuthViewModel.isUserLoggedIn() != false else {
             // User is not logged in
@@ -99,7 +100,8 @@ class DatabaseService {
         let doc = db.collection("users").document(AuthViewModel.getLoggedInUserId())
         doc.setData(["firstname": firstName,
                      "lastname": lastName,
-                     "phone": userPhone])
+                     "phone": userPhone,
+                     "isactive": isActive])
         
         // Check if an image is passed through
         if let image = image {
