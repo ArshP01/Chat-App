@@ -21,6 +21,8 @@ struct CreateProfileView: View {
     @State var source: UIImagePickerController.SourceType = .photoLibrary
     
     @State var isSaveButtonDisabled = false
+    @State var isErrorLabelVisible = false
+    @State var errorMessage = ""
     
     var body: some View {
         
@@ -78,11 +80,28 @@ struct CreateProfileView: View {
             TextField("Last Name", text: $lastName)
                 .textFieldStyle(CreateProfileTextfieldStyle())
             
+            // Error Label
+            Text(errorMessage)
+                .foregroundColor(.red)
+                .font(Font.smallText)
+                .padding(.top, 20)
+                .opacity(isErrorLabelVisible ? 1 : 0)
+            
             Spacer()
             
             Button {
                 
-                // TODO: Check that firstname/lastname fields are filled before allowing to save
+                // Hide error message
+                isErrorLabelVisible = false
+                
+                // Check that firstname/lastname fields are filled before allowing to save
+                guard !firstName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+                        !lastName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+                    
+                    errorMessage = "Please enter a valid first and last name."
+                    isErrorLabelVisible = true
+                    return
+                }
                 
                 // Prevent double taps
                 isSaveButtonDisabled = true
@@ -95,7 +114,9 @@ struct CreateProfileView: View {
                         currentStep = .contacts
                     }
                     else {
-                        // TODO: Show error message to the user
+                        // Show error message to the user
+                        errorMessage = "Error occurred. Please try again."
+                        isErrorLabelVisible = true
                     }
                     
                     isSaveButtonDisabled = false

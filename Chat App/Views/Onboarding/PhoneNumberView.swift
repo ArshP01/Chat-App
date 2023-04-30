@@ -15,6 +15,7 @@ struct PhoneNumberView: View {
     @State var phoneNumber = ""
     
     @State var isButtonDisabled = false
+    @State var isErrorLabelVisible = false
     
     var body: some View {
         
@@ -62,9 +63,19 @@ struct PhoneNumberView: View {
             }
             .padding(.top, 34)
             
+            // Error Label
+            Text("Please enter a valid phone number")
+                .foregroundColor(.red)
+                .font(Font.smallText)
+                .padding(.top, 20)
+                .opacity(isErrorLabelVisible ? 1 : 0)
+            
             Spacer()
             
             Button {
+                
+                // Hide the error message
+                isErrorLabelVisible = false
                 
                 // Disable the button from multiple taps
                 isButtonDisabled = true
@@ -80,7 +91,8 @@ struct PhoneNumberView: View {
                         currentStep = .verification
                     }
                     else {
-                        // TODO: show an error
+                        // show an error
+                        isErrorLabelVisible = true
                     }
                     
                     // Reenable button
