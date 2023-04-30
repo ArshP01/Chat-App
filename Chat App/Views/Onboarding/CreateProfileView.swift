@@ -75,10 +75,20 @@ struct CreateProfileView: View {
             // First name
             TextField("Given Name", text: $firstName)
                 .textFieldStyle(CreateProfileTextfieldStyle())
+                .placeholder(when: firstName.isEmpty) {
+                    Text("Given Name")
+                        .foregroundColor(Color("text-textfield"))
+                        .font(Font.bodyParagraph)
+                }
                   
             // Last name
             TextField("Last Name", text: $lastName)
                 .textFieldStyle(CreateProfileTextfieldStyle())
+                .placeholder(when: lastName.isEmpty) {
+                    Text("Last Name")
+                        .foregroundColor(Color("text-textfield"))
+                        .font(Font.bodyParagraph)
+                }
             
             // Error Label
             Text(errorMessage)

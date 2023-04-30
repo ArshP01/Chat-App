@@ -38,10 +38,16 @@ struct PhoneNumberView: View {
                 
                 HStack{
                     TextField("e.g. 91 12345 67890", text: $phoneNumber)
+                        .foregroundColor(Color("text-textfield"))
                         .font(Font.bodyParagraph)
                         .keyboardType(.numberPad)
                         .onReceive(Just(phoneNumber)) { _ in
                             TextHelper.applyPatternOnNumbers(&phoneNumber, pattern: "+## ##### #####", replacementCharacter: "#")
+                        }
+                        .placeholder(when: phoneNumber.isEmpty) {
+                            Text("e.g. 91 12345 67890")
+                                .foregroundColor(Color("text-textfield"))
+                                .font(Font.bodyParagraph)
                         }
                     
                     Spacer()

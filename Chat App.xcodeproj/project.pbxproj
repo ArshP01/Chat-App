@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E92081F529D7214E00B4B56F /* ContactsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92081F429D7214E00B4B56F /* ContactsListView.swift */; };
 		E92081F729D7216500B4B56F /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92081F629D7216500B4B56F /* ChatsListView.swift */; };
+		E923E6D229FECFFA00D8053B /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E923E6D129FECFFA00D8053B /* ViewExtensions.swift */; };
 		E92C170929D5B46C004B12C0 /* OnboardingButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C170829D5B46C004B12C0 /* OnboardingButtonStyle.swift */; };
 		E92C170B29D5CB94004B12C0 /* CreateProfileTextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C170A29D5CB94004B12C0 /* CreateProfileTextfieldStyle.swift */; };
 		E92C170D29D5D73F004B12C0 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C170C29D5D73F004B12C0 /* ContactsViewModel.swift */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		E92081F429D7214E00B4B56F /* ContactsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListView.swift; sourceTree = "<group>"; };
 		E92081F629D7216500B4B56F /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
+		E923E6D129FECFFA00D8053B /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		E92C170829D5B46C004B12C0 /* OnboardingButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButtonStyle.swift; sourceTree = "<group>"; };
 		E92C170A29D5CB94004B12C0 /* CreateProfileTextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileTextfieldStyle.swift; sourceTree = "<group>"; };
 		E92C170C29D5D73F004B12C0 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				E9893F8429E3207300D0AB1F /* RoundedCornerExtension.swift */,
 				E9EA569D29E5D27200C72578 /* DateHelper.swift */,
 				E971B74029F565960095FB39 /* Constants.swift */,
+				E923E6D129FECFFA00D8053B /* ViewExtensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				E96076E729D4BF3A006BBC8C /* SyncContactsView.swift in Sources */,
 				E971B73329F5632F0095FB39 /* ConversationPhotoMessage.swift in Sources */,
 				E9EA569E29E5D27200C72578 /* DateHelper.swift in Sources */,
+				E923E6D229FECFFA00D8053B /* ViewExtensions.swift in Sources */,
 				E971B73829F564040095FB39 /* SettingsView.swift in Sources */,
 				E96076D729D4992D006BBC8C /* AppDelegate.swift in Sources */,
 				E92C171329D5F68D004B12C0 /* TextHelper.swift in Sources */,
