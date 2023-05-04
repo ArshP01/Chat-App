@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E908CE532A043B9D003456BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E908CE522A043B9D003456BF /* GoogleService-Info.plist */; };
 		E92081F529D7214E00B4B56F /* ContactsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92081F429D7214E00B4B56F /* ContactsListView.swift */; };
 		E92081F729D7216500B4B56F /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92081F629D7216500B4B56F /* ChatsListView.swift */; };
 		E923E6D229FECFFA00D8053B /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E923E6D129FECFFA00D8053B /* ViewExtensions.swift */; };
@@ -29,7 +30,6 @@
 		E96076C529D3F835006BBC8C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076C429D3F835006BBC8C /* Fonts.swift */; };
 		E96076C829D3FDAB006BBC8C /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076C729D3FDAB006BBC8C /* CustomTabBar.swift */; };
 		E96076CA29D4921A006BBC8C /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076C929D4921A006BBC8C /* TabBarButton.swift */; };
-		E96076CC29D49680006BBC8C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E96076CB29D49680006BBC8C /* GoogleService-Info.plist */; };
 		E96076CF29D49816006BBC8C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E96076CE29D49816006BBC8C /* FirebaseAuth */; };
 		E96076D129D49816006BBC8C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E96076D029D49816006BBC8C /* FirebaseFirestore */; };
 		E96076D329D49816006BBC8C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E96076D229D49816006BBC8C /* FirebaseFirestoreSwift */; };
@@ -66,6 +66,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E908CE522A043B9D003456BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E92081F429D7214E00B4B56F /* ContactsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListView.swift; sourceTree = "<group>"; };
 		E92081F629D7216500B4B56F /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		E923E6D129FECFFA00D8053B /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
@@ -90,7 +91,6 @@
 		E96076C429D3F835006BBC8C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		E96076C729D3FDAB006BBC8C /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		E96076C929D4921A006BBC8C /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
-		E96076CB29D49680006BBC8C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E96076D629D4992D006BBC8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E96076D829D49DD9006BBC8C /* Chat App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Chat App.entitlements"; sourceTree = "<group>"; };
 		E96076D929D4A328006BBC8C /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 			children = (
 				E96076D829D49DD9006BBC8C /* Chat App.entitlements */,
 				E96076C329D3F55A006BBC8C /* Chat-App-Info.plist */,
-				E96076CB29D49680006BBC8C /* GoogleService-Info.plist */,
+				E908CE522A043B9D003456BF /* GoogleService-Info.plist */,
 				E96076D629D4992D006BBC8C /* AppDelegate.swift */,
 				E96076A929D3EBB0006BBC8C /* Chat_AppApp.swift */,
 				E96076B729D3EBE5006BBC8C /* Views */,
@@ -400,7 +400,7 @@
 				E96076C129D3F4F3006BBC8C /* LexendDeca-Regular.ttf in Resources */,
 				E97E94E529FC3EEF00170593 /* LaunchScreen.storyboard in Resources */,
 				E96076C029D3F4F3006BBC8C /* LexendDeca-SemiBold.ttf in Resources */,
-				E96076CC29D49680006BBC8C /* GoogleService-Info.plist in Resources */,
+				E908CE532A043B9D003456BF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

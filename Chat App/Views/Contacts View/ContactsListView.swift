@@ -52,7 +52,7 @@ struct ContactsListView: View {
                     .placeholder(when: filterText.isEmpty) {
                         Text("Search contact or number")
                             .foregroundColor(Color("text-textfield"))
-                            .font(Font.bodyParagraph)
+                            .font(Font.tabBar)
                     }
                     .padding()
             }
